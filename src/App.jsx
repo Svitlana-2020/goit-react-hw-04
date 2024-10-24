@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import Header from "./components/Header";
-import PhotosList from "./components/PhotosList";
+import SearchBar from "./components/SearchBar";
+import ImageGallery from "./components/ImageGallery";
 import { fetchPhotosByTitle } from "./photos-api";
 import LoadMoreBtn from './components/LoadMoreBtn'
-import ModalWindow from "./components/ModalWindow";
+import ImageModal from "./components/ImageModal";
 import Loader from "./components/Loader";
 import iziToast from "izitoast";
 import 'izitoast/dist/css/iziToast.min.css';
@@ -80,14 +80,14 @@ const loadMoreVisible = () => {
 
   return (
     <>
-      <Header onSearch={handleSearch}></Header>
+      <SearchBar onSearch={handleSearch}></SearchBar>
       <div>
         <h1>Latest articles</h1>
         {loading && <Loader/>}
         {error}
         {photos.length > 0 && <PhotosList photos={photos} onImageClick={isOpen}  />}
         {loadMoreVisible() && <LoadMoreBtn onClick={handleLoadMore}/>}
-        {modalPhoto && <ModalWindow isOpen={modalIsOpen} isClosed={isClosed} src={modalPhoto.urls.full} alt_description={modalPhoto.alt_description}/>}
+        {modalPhoto && <ImageModal isOpen={modalIsOpen} isClosed={isClosed} src={modalPhoto.urls.full} alt_description={modalPhoto.alt_description}/>}
       </div>
     </>
   );

@@ -1,6 +1,6 @@
-import css from './Header.module.css'
+import css from './SearchBar.module.css'
 
-const Header = ({ onSearch }) => {
+const SearchBar = ({ onSearch }) => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -28,4 +28,4 @@ return (
 </header>)
 }
 
-export default Header
+export default SearchBar
