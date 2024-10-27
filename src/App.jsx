@@ -6,8 +6,9 @@ import { fetchPhotosByTitle } from "./photos-api";
 import LoadMoreBtn from './components/LoadMoreBtn'
 import ImageModal from "./components/ImageModal";
 import Loader from "./components/Loader";
-import iziToast from "izitoast";
-import 'izitoast/dist/css/iziToast.min.css';
+import ErrorMessage from './components/ErrorMessage'
+// import iziToast from "izitoast";
+// import 'izitoast/dist/css/iziToast.min.css';
 
 function App() {
   const [photos, setPhotos] = useState([]);
@@ -39,10 +40,10 @@ async function getPhotos () {
 
     } catch {
       setError(true);
-      iziToast.error({
-        title: 'Error',
-        message: 'Whoops, something went wrong! Please try reloading this page!',
-    });
+    //   iziToast.error({
+    //     title: 'Error',
+    //     message: 'Whoops, something went wrong! Please try reloading this page!',
+    // });
     } finally {
       setLoading(false);
     }
@@ -84,8 +85,8 @@ const loadMoreVisible = () => {
       <div>
         <h1>Latest articles</h1>
         {loading && <Loader/>}
-        {error}
-        {photos.length > 0 && <PhotosList photos={photos} onImageClick={isOpen}  />}
+        {error && <ErrorMessage/>}
+        {photos.length > 0 && <ImageGallery photos={photos} onImageClick={isOpen}  />}
         {loadMoreVisible() && <LoadMoreBtn onClick={handleLoadMore}/>}
         {modalPhoto && <ImageModal isOpen={modalIsOpen} isClosed={isClosed} src={modalPhoto.urls.full} alt_description={modalPhoto.alt_description}/>}
       </div>

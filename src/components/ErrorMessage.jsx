@@ -1,6 +1,12 @@
+import iziToast from "izitoast";
+import 'izitoast/dist/css/iziToast.min.css';
+
 const ErrorMessage = () => {
 return (
-    <p>Whoops, something went wrong! Please try reloading this page!</p>
+    iziToast.error({
+        title: 'Error',
+        message: 'Whoops, something went wrong! Please try reloading this page!',
+    })
 )
 }
 
