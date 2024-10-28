@@ -1,4 +1,5 @@
 import css from './SearchBar.module.css'
+import iziToast from 'izitoast';
 
 const SearchBar = ({ onSearch }) => {
 
@@ -7,7 +8,10 @@ const SearchBar = ({ onSearch }) => {
     const form = evt.target;
 	const title = form.elements.title.value;
     if(form.elements.title.value.trim() === "") {
-        alert("Please enter search term!")
+      iziToast.error({
+        title: 'Error',
+        message: 'Please enter search term!',
+    })
         return;}
     onSearch(title);
     // form.reset();
